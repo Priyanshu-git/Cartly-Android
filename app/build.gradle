@@ -79,4 +79,8 @@ dependencies {
 // Timber
     implementation(libs.timber)
 
+//    Datastore
+    implementation(libs.datastore.core)
+    implementation(libs.datastore.preferences)
+
 }
