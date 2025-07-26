@@ -2,18 +2,30 @@ package com.nexxlabs.cartly
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import kotlin.jvm.java
+import androidx.lifecycle.lifecycleScope
+import com.nexxlabs.cartly.data.preferences.SessionManager
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 class LauncherActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var sessionManager: SessionManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val isLoggedIn = false
-        val target = if (isLoggedIn) MainActivity::class.java else AuthActivity::class.java
-        startActivity(Intent(this, target))
-        finish()
+        lifecycleScope.launch {
+            val token = sessionManager.authToken.firstOrNull()
+            val target = if (!token.isNullOrEmpty()) {
+                MainActivity::class.java
+            } else {
+                AuthActivity::class.java
+            }
+
+            startActivity(Intent(this@LauncherActivity, target))
+            finish()
+        }
     }
 }
