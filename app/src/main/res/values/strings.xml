@@ -9,4 +9,9 @@
     <string name="content_add_group">Add Group</string>
     <string name="label_group_name">Group Name</string>
     <string name="label_group_meta">%1$d members • Created on %2$s</string>
+
+    <string name="title_group_detail">Group Detail</string>
+    <string name="tab_pending">Pending</string>
+    <string name="tab_purchased">Purchased</string>
+
 </resources>

@@ -21,6 +21,11 @@
         <argument
             android:name="groupId"
             app:argType="string" />
+
+        <argument
+            android:name="defaultTab"
+            app:argType="string"
+            android:defaultValue="pending" />
     </fragment>
 
 </navigation>
