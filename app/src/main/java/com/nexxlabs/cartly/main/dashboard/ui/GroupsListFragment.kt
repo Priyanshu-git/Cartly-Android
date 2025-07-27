@@ -55,7 +55,7 @@ class GroupsListFragment : Fragment() {
     }
 
     private fun handleGroupClick(group: Group) {
-        val action = GroupsListFragmentDirections.actionGroupsListToGroupDetailFragment(group.id)
+        val action = GroupsListFragmentDirections.actionGroupsListToGroupDetailFragment(group.id, group.name)
         findNavController().navigate(action)
     }
 

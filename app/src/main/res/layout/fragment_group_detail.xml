@@ -3,68 +3,78 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:colorBackground"
+        android:background="@color/colorSurface"
         tools:context=".main.groupdetail.ui.GroupDetailFragment">
 
-        <!-- Top App Bar -->
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        <!-- App Bar with Collapsing Toolbar -->
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:title="@string/title_group_detail"
-            android:titleTextColor="?attr/colorOnSurface"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" >
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
 
-        <!-- TabLayout -->
-         <androidx.constraintlayout.widget.ConstraintLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content">
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:titleEnabled="true">
 
-             <ImageView
-                 android:id="@+id/ivBack"
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:src="@drawable/rounded_arrow_back_24"
-                 app:layout_constraintBottom_toBottomOf="parent"
-                 app:layout_constraintStart_toStartOf="parent"
-                 app:layout_constraintTop_toTopOf="parent"
-                 app:tint="@color/colorOnSurface" />
+                <!-- Center text visible only in expanded state -->
+                <TextView
+                    android:id="@+id/tvGroupTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="My Group Title"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="?android:textColorPrimary"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    app:layout_collapseMode="pin" />
 
-             <com.google.android.material.tabs.TabLayout
-                 android:id="@+id/tabLayout"
-                 android:layout_width="0dp"
-                 android:layout_height="wrap_content"
-                 android:layout_gravity="top"
-                 app:layout_constraintBottom_toBottomOf="parent"
-                 app:layout_constraintEnd_toEndOf="parent"
-                 app:layout_constraintStart_toStartOf="parent"
-                 app:layout_constraintTop_toTopOf="parent"
-                 android:background="@color/transparent"
-                 app:tabIndicatorColor="?attr/colorSecondary"
-                 app:tabIndicatorFullWidth="false"
-                 app:tabSelectedTextColor="?attr/colorPrimary"
-                 app:tabTextColor="?attr/colorOnSurface" />
-         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.appbar.MaterialToolbar>
+                <!-- Toolbar -->
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:navigationIcon="@drawable/rounded_arrow_back_24"
+                    app:titleTextColor="?attr/colorOnSurface"
+                    app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" />
 
-        <!-- ViewPager2 -->
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/viewPager"
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_below="@id/toolbar"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:background="@color/colorSecondary"
+                app:tabIndicatorColor="?attr/colorSecondary"
+                app:tabIndicatorFullWidth="false"
+                app:tabSelectedTextColor="?attr/colorPrimary"
+                app:tabTextColor="?attr/colorOnSurface" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
