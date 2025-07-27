@@ -1,18 +1,21 @@
 package com.nexxlabs.cartly.main.dashboard.ui
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.nexxlabs.cartly.R
 import com.nexxlabs.cartly.data.api.model.Group
 import com.nexxlabs.cartly.databinding.ItemGroupBinding
 import timber.log.Timber
 
 class GroupsAdapter(
     private val onGroupClicked: (Group) -> Unit
-) : RecyclerView.Adapter<GroupsAdapter.GroupViewHolder>() {
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val items = mutableListOf<Group>()
+    private enum class VIEW_TYPE{ITEM, FOOTER}
 
     fun updateData(newList: List<Group>) {
         val diffCallback = GroupDiffCallback(items, newList)
@@ -24,19 +27,34 @@ class GroupsAdapter(
         Timber.d("Updated group list: ${newList.size} items")
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupViewHolder {
-        val binding = ItemGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        Timber.d("Created ViewHolder for group item")
-        return GroupViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        if (viewType == VIEW_TYPE.ITEM.ordinal) {
+            val binding = ItemGroupBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            return GroupViewHolder(binding)
+        } else {
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.view_footer, parent, false)
+            return FooterViewHolder(view)
+        }
     }
 
-    override fun onBindViewHolder(holder: GroupViewHolder, position: Int) {
-        holder.bind(items[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        Timber.d("onBindViewHolder: $position")
+        if (holder is GroupViewHolder && position < items.size) {
+            holder.bind(items[position])
+        } else if (holder is FooterViewHolder){
+            Timber.d("Rendering footer on position: $position")
+        }
     }
 
     override fun getItemCount(): Int {
         Timber.d("getItemCount: ${items.size}")
-        return items.size
+        return items.size +1
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        if (position == itemCount -1) return VIEW_TYPE.FOOTER.ordinal
+        return VIEW_TYPE.ITEM.ordinal
     }
 
     inner class GroupViewHolder(private val binding: ItemGroupBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -52,6 +70,8 @@ class GroupsAdapter(
             }
         }
     }
+
+    inner class FooterViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
     class GroupDiffCallback(
         private val oldList: List<Group>,

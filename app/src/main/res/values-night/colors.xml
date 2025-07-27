@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="transparent">#00000000</color>
+
     <color name="colorPrimary">#81C784</color> <!-- Green 300 -->
     <color name="colorOnPrimary">#000000</color>
 
