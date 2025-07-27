@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/groupDetailFragment"
-        android:name="com.nexxlabs.cartly.main.dashboard.ui.GroupDetailFragment"
+        android:name="com.nexxlabs.cartly.main.groupdetail.ui.GroupDetailFragment"
         android:label="Group Details">
         <argument
             android:name="groupId"

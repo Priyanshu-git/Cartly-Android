@@ -1,4 +1,4 @@
-package com.nexxlabs.cartly.main.dashboard.ui
+package com.nexxlabs.cartly.main.groupdetail.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

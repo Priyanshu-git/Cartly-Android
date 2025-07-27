@@ -1,4 +1,4 @@
-package com.nexxlabs.cartly.main.dashboard.ui
+package com.nexxlabs.cartly.main.groupdetail.ui
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
