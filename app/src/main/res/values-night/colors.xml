@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#81C784</color> <!-- Green 300 -->
+    <color name="colorOnPrimary">#000000</color>
+
+    <color name="colorSecondary">#AED581</color> <!-- Light Green 300 -->
+    <color name="colorOnSecondary">#000000</color>
+
+    <color name="colorBackground">#121212</color>
+    <color name="colorOnBackground">#FFFFFF</color>
+
+    <color name="colorSurface">#1E1E1E</color>
+    <color name="colorOnSurface">#FFFFFF</color>
+
+    <color name="colorError">#CF6679</color>
+    <color name="colorOnError">#000000</color>
+
+    <!-- Optional utility colors -->
+    <color name="colorOutline">#616161</color>
+    <color name="colorDivider">#2C2C2C</color>
+    <color name="colorDisabled">#2E2E2E</color>
+    <color name="colorAppBar">#1E1E1E</color>
+    <color name="colorIconDefault">#FFFFFF</color>
+
+    <color name="colorErrorSurface">#370B0F</color> <!-- Dark red surface -->
+    <color name="colorOnErrorSurface">#FFCDD2</color> <!-- Soft pink for visibility -->
+
+</resources>

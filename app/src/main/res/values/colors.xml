@@ -7,4 +7,30 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#4CAF50</color> <!-- Green 500 -->
+    <color name="colorOnPrimary">#FFFFFF</color>
+
+    <color name="colorSecondary">#8BC34A</color> <!-- Light Green 500 -->
+    <color name="colorOnSecondary">#000000</color>
+
+    <color name="colorBackground">#FFFFFF</color>
+    <color name="colorOnBackground">#000000</color>
+
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#000000</color>
+
+    <color name="colorError">#B00020</color>
+    <color name="colorOnError">#FFFFFF</color>
+
+    <!-- Optional utility colors -->
+    <color name="colorOutline">#BDBDBD</color>
+    <color name="colorDivider">#E0E0E0</color>
+    <color name="colorDisabled">#E0E0E0</color>
+    <color name="colorAppBar">#4CAF50</color>
+    <color name="colorIconDefault">#616161</color>
+
+    <color name="colorErrorSurface">#FDECEA</color> <!-- Light red tint -->
+    <color name="colorOnErrorSurface">#B00020</color> <!-- Standard red for text/icons -->
+
 </resources>
