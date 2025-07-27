@@ -24,12 +24,12 @@ class GroupDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.tvGroupTitle.text = args.groupName
         setupToolbar()
         setupViewPager()
     }
 
     private fun setupToolbar() {
+        binding.toolbar.title = args.groupName
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }

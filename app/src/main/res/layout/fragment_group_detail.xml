@@ -19,23 +19,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:fitsSystemWindows="true"
-                app:contentScrim="?attr/colorPrimary"
+                app:contentScrim="@color/colorSurface"
+                android:background="@color/colorSurface"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:titleEnabled="true">
-
-                <!-- Center text visible only in expanded state -->
-                <TextView
-                    android:id="@+id/tvGroupTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:text="My Group Title"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="?android:textColorPrimary"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    app:layout_collapseMode="pin" />
-
+                app:titleEnabled="true"
+                app:title="My Group Title"
+                app:collapsedTitleTextColor="@color/colorPrimary"
+                app:expandedTitleTextColor="@color/colorPrimary">
 
                 <!-- Toolbar -->
                 <com.google.android.material.appbar.MaterialToolbar
@@ -63,7 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:background="@color/colorSecondary"
+                android:background="@color/colorSurface"
                 app:tabIndicatorColor="?attr/colorSecondary"
                 app:tabIndicatorFullWidth="false"
                 app:tabSelectedTextColor="?attr/colorPrimary"
@@ -73,7 +63,8 @@
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_marginTop="8dp"/>
         </LinearLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

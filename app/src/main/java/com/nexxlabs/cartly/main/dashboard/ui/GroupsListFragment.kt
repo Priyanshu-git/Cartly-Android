@@ -41,8 +41,8 @@ class GroupsListFragment : Fragment() {
     private fun setupToolbar() {
         binding.topAppBar.apply {
             title = getString(R.string.app_name)
-            setTitleTextColor(resources.getColor(R.color.colorOnPrimary, null))
-            background = ResourcesCompat.getDrawable(resources, R.color.colorPrimary, null)
+            setTitleTextColor(resources.getColor(R.color.colorPrimary, null))
+            background = ResourcesCompat.getDrawable(resources, R.color.colorSurface, null)
         }
     }
 
