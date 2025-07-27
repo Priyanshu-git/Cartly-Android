@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Cartly</string>
+    <string name="title_my_groups">My Groups</string>
+
+    <string name="empty_groups">No group found. Lets\'s start by creating a group!</string>
+    <string name="new_group_text">Tap to create a new Group</string>
+
+
+    <string name="content_add_group">Add Group</string>
+    <string name="label_group_name">Group Name</string>
+    <string name="label_group_meta">%1$d members • Created on %2$s</string>
 </resources>
