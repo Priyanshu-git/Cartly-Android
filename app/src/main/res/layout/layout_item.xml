@@ -1,62 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
         android:layout_marginHorizontal="4dp"
+        android:layout_marginBottom="8dp"
         android:elevation="2dp"
-        app:cardCornerRadius="8dp"
-        android:foreground="?attr/selectableItemBackground">
+        android:foreground="?attr/selectableItemBackground"
+        app:cardCornerRadius="8dp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:padding="8dp">
 
             <TextView
                 android:id="@+id/tvItemLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Item Name"
+                tools:text="Item Name"
+                android:textColor="?attr/colorOnBackground"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="?attr/colorOnBackground" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tvItemMeta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2 kg"
+                tools:text="2 kg"
                 android:textColor="?attr/colorOnBackground"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvItemLabel" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="4dp">
+                android:paddingTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvItemMeta">
 
                 <TextView
                     android:id="@+id/tvItemAddedBy"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Added by John"
+                    tools:text="Added by John"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="4dp"
+                    android:layout_weight="1"
+                    tools:text="·"
+                    android:textColor="?attr/colorOnBackground"
                     android:textSize="12sp"
-                    android:textColor="?attr/colorOnBackground" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/tvItemDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2024-07-14"
-                    android:textSize="12sp"
-                    android:textColor="?attr/colorOnBackground" />
+                    tools:text="2024-07-14"
+                    android:textColor="?attr/colorOnBackground"
+                    android:textSize="12sp" />
             </LinearLayout>
-        </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/brandCTA"
+                android:layout_width="72dp"
+                android:layout_height="28dp"
+                android:backgroundTint="@color/colorBlinkitBG"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/brandLogo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerInside"
+                    app:srcCompat="@drawable/blinkit_export" />
+
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

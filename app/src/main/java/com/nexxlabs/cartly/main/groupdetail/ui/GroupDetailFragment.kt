@@ -52,6 +52,9 @@ class GroupDetailFragment : Fragment() {
         val defaultIndex = if (defaultTab == "purchased") 1 else 0
         binding.viewPager.setCurrentItem(defaultIndex, false)
 
+        // disable scroll to switch page
+        binding.viewPager.isUserInputEnabled = false
+
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = if (position == 0) "Pending" else "Purchased"
         }.attach()

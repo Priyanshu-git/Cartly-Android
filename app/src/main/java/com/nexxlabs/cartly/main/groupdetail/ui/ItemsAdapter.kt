@@ -1,14 +1,18 @@
 package com.nexxlabs.cartly.main.groupdetail.ui
 
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.nexxlabs.cartly.R
 import com.nexxlabs.cartly.data.api.model.Item
 import com.nexxlabs.cartly.databinding.LayoutItemBinding
 import timber.log.Timber
 
-class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
+class ItemsAdapter(val tabType: TabType) : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
 
     private val items = mutableListOf<Item>()
 
@@ -33,12 +37,36 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
         Timber.d("Items updated: ${items.size}")
     }
 
-    inner class ItemViewHolder(private val binding: LayoutItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ItemViewHolder(private val binding: LayoutItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Item) {
-            binding.tvItemLabel.text = item.label
-            binding.tvItemMeta.text = "${item.quantity} ${item.unit}"
-            binding.tvItemAddedBy.text = item.addedBy
-            binding.tvItemDate.text = item.dateOrdered ?: item.dateAdded
+            val mContext = binding.root.context
+            binding.apply {
+                tvItemLabel.text = item.label
+                tvItemMeta.text = "${item.quantity} ${item.unit}"
+                tvItemAddedBy.text = item.addedBy
+                tvItemDate.text = if (tabType == TabType.PENDING) item.dateAdded else item.dateOrdered
+
+                if (tabType == TabType.PURCHASED) {
+                    brandCTA.visibility = View.GONE
+                } else {
+                    brandCTA.visibility = View.VISIBLE
+                    brandCTA.setOnClickListener {
+                        try {
+                            val intent = Intent(
+                                Intent.ACTION_VIEW,
+                                "${mContext.getString(R.string.blinkit_deeplink_url)}${item.label}".toUri()
+                            )
+                            mContext.startActivity(intent)
+                        } catch (e: Exception) {
+                            Timber.e(e)
+                        }
+                    }
+                }
+
+            }
+
+
         }
     }
 

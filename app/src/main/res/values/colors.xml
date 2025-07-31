@@ -34,4 +34,7 @@
     <color name="colorErrorSurface">#FDECEA</color> <!-- Light red tint -->
     <color name="colorOnErrorSurface">#B00020</color> <!-- Standard red for text/icons -->
 
+    <!--    Brand Colors-->
+    <color name="colorBlinkitBG">#F8CB46</color>
+
 </resources>

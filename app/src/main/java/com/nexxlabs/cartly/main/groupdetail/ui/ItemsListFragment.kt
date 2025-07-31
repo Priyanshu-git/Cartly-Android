@@ -15,14 +15,14 @@ class ItemsListFragment : Fragment() {
     private var _binding: FragmentItemsListBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var tabType: String
+    private lateinit var tabType: TabType
     private lateinit var groupId: String
 
     private lateinit var itemsAdapter: ItemsAdapter // You'll define this adapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        tabType = arguments?.getString(ARG_TAB_TYPE) ?: "pending"
+        tabType = if (arguments?.getString(ARG_TAB_TYPE) == "pending")  TabType.PENDING else TabType.PURCHASED
         groupId = arguments?.getString(ARG_GROUP_ID) ?: ""
 
         Timber.d("ItemsListFragment created for tab: $tabType, groupId: $groupId")
@@ -42,7 +42,7 @@ class ItemsListFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        itemsAdapter = ItemsAdapter()
+        itemsAdapter = ItemsAdapter(tabType)
         binding.recyclerView.apply {
             adapter = itemsAdapter
             layoutManager = LinearLayoutManager(requireContext())
@@ -50,17 +50,30 @@ class ItemsListFragment : Fragment() {
     }
 
     private fun loadMockData() {
-        // Replace with real data later
-        val dummyItems = List(10) {
-            Item(
-                id = it.toString(),
-                label = "Item ${it + 1}",
-                addedBy = "User $it",
-                dateAdded = "2024-07-${10 + it}",
-                dateOrdered = if (tabType == "purchased") "2024-07-${15 + it}" else null,
-                quantity = it + 1,
-                unit = "pcs"
-            )
+        val dummyItems = if (tabType == TabType.PURCHASED) {
+            List(10) {
+                Item(
+                    id = it.toString(),
+                    label = listOf("Aashirvaad Atta", "Amul Milk", "Colgate Paste", "Tata Salt", "Maggie Noodles", "Pepsi Bottle", "Fortune Oil", "Parle-G Biscuits", "Dove Shampoo", "Surf Excel")[it],
+                    addedBy = "User $it",
+                    dateAdded = "2024-07-${10 + it}",
+                    dateOrdered = "2024-07-${15 + it}",
+                    quantity = (1..10).random(),
+                    unit = "pcs"
+                )
+            }
+        } else {
+            List(10) {
+                Item(
+                    id = it.toString(),
+                    label = listOf("Tropicana Juice", "Amul Butter", "Kissan Jam", "Tata Tea", "MDH Masala", "Britannia Cake", "Dettol Soap", "Red Label Tea", "Nestle Munch", "Good Day Cookies")[it],
+                    addedBy = "User $it",
+                    dateAdded = "2024-07-${10 + it}",
+                    dateOrdered = null,
+                    quantity = (1..3).random(),
+                    unit = "pcs"
+                )
+            }
         }
         itemsAdapter.updateData(dummyItems)
     }
