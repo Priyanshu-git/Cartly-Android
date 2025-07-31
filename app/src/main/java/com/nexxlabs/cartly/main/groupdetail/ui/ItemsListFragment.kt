@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.nexxlabs.cartly.R
 import com.nexxlabs.cartly.data.api.model.Item
 import com.nexxlabs.cartly.databinding.FragmentItemsListBinding
 import timber.log.Timber
@@ -18,7 +21,7 @@ class ItemsListFragment : Fragment() {
     private lateinit var tabType: TabType
     private lateinit var groupId: String
 
-    private lateinit var itemsAdapter: ItemsAdapter // You'll define this adapter
+    private lateinit var itemsAdapter: ItemsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +49,33 @@ class ItemsListFragment : Fragment() {
         binding.recyclerView.apply {
             adapter = itemsAdapter
             layoutManager = LinearLayoutManager(requireContext())
+
+            setupItemSwipeActions(this)
         }
+    }
+
+    private fun setupItemSwipeActions(recyclerView: RecyclerView) {
+        val swipeCallback = ItemSwipeCallback.Builder(recyclerView.context)
+            .setLeftSwipe(R.color.colorSecondary, R.drawable.rounded_add_24)
+            .setRightSwipe(R.color.colorError, R.drawable.rounded_arrow_back_24)
+            .setOnSwipeListener { position, direction ->
+                val item = itemsAdapter.currentList[position]
+                when (direction) {
+                    ItemTouchHelper.RIGHT -> {
+                        Timber.d("Item swiped right: $item")
+                        itemsAdapter.removeItem(position)
+                    }
+
+                    ItemTouchHelper.LEFT -> {
+                        Timber.d("Item swiped left: $item")
+                        itemsAdapter.removeItem(position)
+                    }
+                }
+                itemsAdapter.notifyItemChanged(position)
+            }
+            .build()
+
+        ItemTouchHelper(swipeCallback).attachToRecyclerView(recyclerView)
     }
 
     private fun loadMockData() {

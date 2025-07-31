@@ -16,6 +16,9 @@ class ItemsAdapter(val tabType: TabType) : RecyclerView.Adapter<ItemsAdapter.Ite
 
     private val items = mutableListOf<Item>()
 
+    val currentList: List<Item>
+        get() = items
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val binding = LayoutItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemViewHolder(binding)
@@ -35,6 +38,13 @@ class ItemsAdapter(val tabType: TabType) : RecyclerView.Adapter<ItemsAdapter.Ite
         items.addAll(newList)
         diffResult.dispatchUpdatesTo(this)
         Timber.d("Items updated: ${items.size}")
+    }
+
+    fun removeItem(index: Int) {
+        if (index>0 && index<items.size) {
+            items.removeAt(index)
+            notifyItemRemoved(index)
+        }
     }
 
     inner class ItemViewHolder(private val binding: LayoutItemBinding) :
