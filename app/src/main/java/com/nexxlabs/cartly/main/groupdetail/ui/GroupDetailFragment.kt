@@ -29,7 +29,7 @@ class GroupDetailFragment : Fragment() {
     }
 
     private fun setupToolbar() {
-        binding.toolbar.title = args.groupName
+        binding.collapsingToolbar.title = args.groupName
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigateUp()
         }

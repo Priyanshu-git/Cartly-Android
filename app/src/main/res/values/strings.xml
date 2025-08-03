@@ -14,5 +14,7 @@
     <string name="tab_pending">Pending</string>
     <string name="tab_purchased">Purchased</string>
 
+    <string name="center_dot">\u2022</string>
+
     <string name="blinkit_deeplink_url">https://www.blinkit.com/brand/</string>
 </resources>
