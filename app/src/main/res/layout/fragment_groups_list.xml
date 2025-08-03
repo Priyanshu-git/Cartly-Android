@@ -13,7 +13,7 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorSurface"
+            android:background="@color/transparent"
             android:title="@string/title_my_groups"
             android:titleTextColor="?attr/colorOnSurface"
             app:popupTheme="@style/ThemeOverlay.MaterialComponents.Light" />

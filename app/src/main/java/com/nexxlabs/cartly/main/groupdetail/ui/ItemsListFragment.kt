@@ -71,7 +71,6 @@ class ItemsListFragment : Fragment() {
                         itemsAdapter.removeItem(position)
                     }
                 }
-                itemsAdapter.notifyItemChanged(position)
             }
             .build()
 

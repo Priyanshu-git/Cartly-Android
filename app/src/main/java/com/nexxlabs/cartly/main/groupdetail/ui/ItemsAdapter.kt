@@ -41,7 +41,7 @@ class ItemsAdapter(val tabType: TabType) : RecyclerView.Adapter<ItemsAdapter.Ite
     }
 
     fun removeItem(index: Int) {
-        if (index>0 && index<items.size) {
+        if (index >= 0 && index < items.size) {
             items.removeAt(index)
             notifyItemRemoved(index)
         }
