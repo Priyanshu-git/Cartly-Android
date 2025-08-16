@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_main"
     app:startDestination="@id/groupsList">
 
     <fragment
         android:id="@+id/groupsList"
         android:name="com.nexxlabs.cartly.main.dashboard.ui.GroupsListFragment"
+        tools:layout="@layout/fragment_groups_list"
         android:label="GroupsList">
 
         <action
@@ -17,6 +19,7 @@
     <fragment
         android:id="@+id/groupDetailFragment"
         android:name="com.nexxlabs.cartly.main.groupdetail.ui.GroupDetailFragment"
+        tools:layout="@layout/fragment_group_detail"
         android:label="Group Details">
         <argument
             android:name="groupId"

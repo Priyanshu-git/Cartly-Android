@@ -24,7 +24,11 @@
     <color name="colorAppBar">#1E1E1E</color>
     <color name="colorIconDefault">#FFFFFF</color>
 
-    <color name="colorErrorSurface">#370B0F</color> <!-- Dark red surface -->
-    <color name="colorOnErrorSurface">#FFCDD2</color> <!-- Soft pink for visibility -->
+    <color name="colorErrorSurface">#370B0F</color>
+    <color name="colorOnErrorSurface">#FFCDD2</color>
+
+    <color name="chip_background">#1B2B28</color>
+    <color name="chip_text">#DAF1DE</color>
+    <color name="chip_close_icon_tint">#8EB69B</color>
 
 </resources>
