@@ -59,11 +59,18 @@ class GroupsListFragment : Fragment() {
 
 
     private fun setupListeners() {
-        binding.fabAddGroup.setOnClickListener {
+        binding.fabAddGroup.post {
             val bottomSheet = NewGroupBottomSheet { groupName, members ->
                 Toast.makeText(requireContext(), "Group created: $groupName", Toast.LENGTH_SHORT).show()
             }
-            bottomSheet.show(childFragmentManager, "NewGroupBottomSheet")
+            binding.fabAddGroup.setOnClickListener {
+                try {
+                    bottomSheet.show(childFragmentManager, "NewGroupBottomSheet")
+                } catch (_: IllegalStateException) {
+                    bottomSheet.dismiss()
+                    bottomSheet.show(childFragmentManager, "NewGroupBottomSheet")
+                }
+            }
         }
 
         binding.newGroupText.setOnClickListener {
