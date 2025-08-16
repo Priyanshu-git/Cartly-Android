@@ -60,7 +60,10 @@ class GroupsListFragment : Fragment() {
 
     private fun setupListeners() {
         binding.fabAddGroup.setOnClickListener {
-            Toast.makeText(requireContext(), "Add Group clicked", Toast.LENGTH_SHORT).show()
+            val bottomSheet = NewGroupBottomSheet { groupName, members ->
+                Toast.makeText(requireContext(), "Group created: $groupName", Toast.LENGTH_SHORT).show()
+            }
+            bottomSheet.show(childFragmentManager, "NewGroupBottomSheet")
         }
 
         binding.newGroupText.setOnClickListener {
@@ -85,17 +88,52 @@ class GroupsListFragment : Fragment() {
     }
 
     private fun mockGroups(): List<Group> = listOf(
-        Group("1", "Weekend Groceries", "2024-07-01", listOf(User("1", "", "John Doe"), User("2", "", "Jane Doe"))),
-        Group("2", "Birthday Bash", "2024-07-05", listOf(User("3", "", "Alice Smith"), User("4", "", "Bob Johnson"))),
+        Group(
+            "1",
+            "Weekend Groceries",
+            "2024-07-01",
+            listOf(User("1", "", "John Doe"), User("2", "", "Jane Doe"))
+        ),
+        Group(
+            "2",
+            "Birthday Bash",
+            "2024-07-05",
+            listOf(User("3", "", "Alice Smith"), User("4", "", "Bob Johnson"))
+        ),
         Group("3", "Office Lunch", "2024-07-07", listOf(User("5", "", "Charlie Brown"))),
-        Group("4", "Housewarming Party", "2024-07-10", listOf(User("6", "", "Diana Prince"), User("1", "", "John Doe"))),
-        Group("5", "Family Dinner", "2024-07-12", listOf(User("7", "", "Bruce Wayne"), User("8", "", "Clark Kent"))),
+        Group(
+            "4",
+            "Housewarming Party",
+            "2024-07-10",
+            listOf(User("6", "", "Diana Prince"), User("1", "", "John Doe"))
+        ),
+        Group(
+            "5",
+            "Family Dinner",
+            "2024-07-12",
+            listOf(User("7", "", "Bruce Wayne"), User("8", "", "Clark Kent"))
+        ),
         Group("6", "Road Trip Supplies", "2024-07-15", listOf(User("9", "", "Peter Parker"))),
         Group("7", "Diwali Shopping", "2024-07-18", listOf(User("10", "", "Natasha Romanoff"))),
         Group("8", "Grocery Split", "2024-07-19", listOf(User("11", "", "Steve Rogers"))),
-        Group("9", "Team Outing", "2024-07-20", listOf(User("12", "", "Tony Stark"), User("13", "", "Pepper Potts"))),
-        Group("10", "Roommates Kitchen List", "2024-07-21", listOf(User("14", "", "Stephen Strange"))),
-        Group("11", "Bachelors Party", "2024-07-22", listOf(User("15", "", "Thor Odinson"), User("16", "", "Loki Laufeyson"))),
+        Group(
+            "9",
+            "Team Outing",
+            "2024-07-20",
+            listOf(User("12", "", "Tony Stark"), User("13", "", "Pepper Potts"))
+        ),
+        Group(
+            "10",
+            "Roommates Kitchen List",
+            "2024-07-21",
+            listOf(User("14", "", "Stephen Strange"))
+        ),
+        Group(
+            "11",
+            "Bachelors Party",
+            "2024-07-22",
+            listOf(User("15", "", "Thor Odinson"), User("16", "", "Loki Laufeyson"))
+        ),
         Group("12", "Christmas Gifts", "2024-07-23", listOf(User("17", "", "Wanda Maximoff"))),
         Group("13", "Trip to Goa", "2024-07-24", listOf(User("18", "", "Scott Lang"))),
         Group("14", "Flat Essentials", "2024-07-25", listOf(User("19", "", "Hope Van Dyne"))),

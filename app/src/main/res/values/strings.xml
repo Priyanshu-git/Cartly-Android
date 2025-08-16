@@ -17,4 +17,23 @@
     <string name="center_dot">\u2022</string>
 
     <string name="blinkit_deeplink_url">https://www.blinkit.com/brand/</string>
+
+
+    <!-- Create Group Popup -->
+    <string name="create_group_title">Create Group</string>
+    <string name="group_name_hint">Enter group name</string>
+    <string name="member_email_hint">Add members</string>
+    <string name="create_group_positive">Create</string>
+    <string name="create_group_negative">Cancel</string>
+
+    <!-- Chip -->
+    <string name="remove_chip_content_desc">Remove member</string>
+
+    <!-- Error / Toast messages -->
+    <string name="group_name_required">Please enter a group name</string>
+    <string name="no_members_added">Please add at least one member</string>
+    <string name="invalid_email">Invalid email address</string>
+    <string name="duplicate_email">Email already added</string>
+
+
 </resources>
