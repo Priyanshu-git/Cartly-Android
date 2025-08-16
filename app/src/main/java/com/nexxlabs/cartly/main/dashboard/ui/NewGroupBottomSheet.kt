@@ -35,6 +35,17 @@ class NewGroupBottomSheet(
         setupButtons()
     }
 
+    override fun onStart() {
+        super.onStart()
+        resetState()
+    }
+
+    private fun resetState() {
+        binding.groupNameEditText.text?.clear()
+        binding.memberEmailEditText.text?.clear()
+        binding.emailChipGroup.removeAllViews()
+    }
+
     private fun setupEmailChipHandling() {
         binding.memberEmailEditText.setOnEditorActionListener { _, _, _ ->
             addEmailFromInput()
