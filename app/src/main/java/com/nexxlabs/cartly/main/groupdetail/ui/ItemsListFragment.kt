@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.nexxlabs.cartly.R
-import com.nexxlabs.cartly.data.api.model.Item
+import com.nexxlabs.cartly.data.models.GroceryItem
 import com.nexxlabs.cartly.databinding.FragmentItemsListBinding
 import timber.log.Timber
 
@@ -62,12 +62,12 @@ class ItemsListFragment : Fragment() {
                 val item = itemsAdapter.currentList[position]
                 when (direction) {
                     ItemTouchHelper.RIGHT -> {
-                        Timber.d("Item swiped right: $item")
+                        Timber.d("GroceryItem swiped right: $item")
                         itemsAdapter.removeItem(position)
                     }
 
                     ItemTouchHelper.LEFT -> {
-                        Timber.d("Item swiped left: $item")
+                        Timber.d("GroceryItem swiped left: $item")
                         itemsAdapter.removeItem(position)
                     }
                 }
@@ -80,10 +80,10 @@ class ItemsListFragment : Fragment() {
     private fun loadMockData() {
         val dummyItems = if (tabType == TabType.PURCHASED) {
             List(10) {
-                Item(
+                GroceryItem(
                     id = it.toString(),
-                    label = listOf("Aashirvaad Atta", "Amul Milk", "Colgate Paste", "Tata Salt", "Maggie Noodles", "Pepsi Bottle", "Fortune Oil", "Parle-G Biscuits", "Dove Shampoo", "Surf Excel")[it],
-                    addedBy = "User $it",
+                    name = listOf("Aashirvaad Atta", "Amul Milk", "Colgate Paste", "Tata Salt", "Maggie Noodles", "Pepsi Bottle", "Fortune Oil", "Parle-G Biscuits", "Dove Shampoo", "Surf Excel")[it],
+                    addedByUserId = "User $it",
                     dateAdded = "2024-07-${10 + it}",
                     dateOrdered = "2024-07-${15 + it}",
                     quantity = (1..10).random(),
@@ -92,10 +92,10 @@ class ItemsListFragment : Fragment() {
             }
         } else {
             List(10) {
-                Item(
+                GroceryItem(
                     id = it.toString(),
-                    label = listOf("Tropicana Juice", "Amul Butter", "Kissan Jam", "Tata Tea", "MDH Masala", "Britannia Cake", "Dettol Soap", "Red Label Tea", "Nestle Munch", "Good Day Cookies")[it],
-                    addedBy = "User $it",
+                    name = listOf("Tropicana Juice", "Amul Butter", "Kissan Jam", "Tata Tea", "MDH Masala", "Britannia Cake", "Dettol Soap", "Red Label Tea", "Nestle Munch", "Good Day Cookies")[it],
+                    addedByUserId = "User $it",
                     dateAdded = "2024-07-${10 + it}",
                     dateOrdered = null,
                     quantity = (1..3).random(),

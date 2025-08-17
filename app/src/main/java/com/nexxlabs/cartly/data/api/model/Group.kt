@@ -1,3 +1,0 @@
-package com.nexxlabs.cartly.data.api.model
-
-data class Group(val id: String, val name: String, val createdAt: String, val members: List<User>)

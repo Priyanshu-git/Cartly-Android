@@ -8,15 +8,15 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.nexxlabs.cartly.R
-import com.nexxlabs.cartly.data.api.model.Item
+import com.nexxlabs.cartly.data.models.GroceryItem
 import com.nexxlabs.cartly.databinding.LayoutItemBinding
 import timber.log.Timber
 
 class ItemsAdapter(val tabType: TabType) : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
 
-    private val items = mutableListOf<Item>()
+    private val items = mutableListOf<GroceryItem>()
 
-    val currentList: List<Item>
+    val currentList: List<GroceryItem>
         get() = items
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
@@ -30,7 +30,7 @@ class ItemsAdapter(val tabType: TabType) : RecyclerView.Adapter<ItemsAdapter.Ite
         holder.bind(items[position])
     }
 
-    fun updateData(newList: List<Item>) {
+    fun updateData(newList: List<GroceryItem>) {
         val diffCallback = ItemDiffCallback(items, newList)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
 
@@ -49,13 +49,13 @@ class ItemsAdapter(val tabType: TabType) : RecyclerView.Adapter<ItemsAdapter.Ite
 
     inner class ItemViewHolder(private val binding: LayoutItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: Item) {
+        fun bind(item: GroceryItem) {
             val mContext = binding.root.context
             binding.apply {
-                tvItemLabel.text = item.label
+                tvItemLabel.text = item.name
                 tvItemMeta.text = "${item.quantity} ${item.unit}"
-                tvItemAddedBy.text = item.addedBy
-                tvItemDate.text = if (tabType == TabType.PENDING) item.dateAdded else item.dateOrdered
+                tvItemAddedBy.text = item.addedByUserId
+                tvItemDate.text = if (tabType == TabType.PENDING) item.dateAdded.toString() else item.dateOrdered.toString()
 
                 if (tabType == TabType.PURCHASED) {
                     brandCTA.visibility = View.GONE
@@ -65,7 +65,7 @@ class ItemsAdapter(val tabType: TabType) : RecyclerView.Adapter<ItemsAdapter.Ite
                         try {
                             val intent = Intent(
                                 Intent.ACTION_VIEW,
-                                "${mContext.getString(R.string.blinkit_deeplink_url)}${item.label}".toUri()
+                                "${mContext.getString(R.string.blinkit_deeplink_url)}${item.name}".toUri()
                             )
                             mContext.startActivity(intent)
                         } catch (e: Exception) {
@@ -81,8 +81,8 @@ class ItemsAdapter(val tabType: TabType) : RecyclerView.Adapter<ItemsAdapter.Ite
     }
 
     class ItemDiffCallback(
-        private val oldList: List<Item>,
-        private val newList: List<Item>
+        private val oldList: List<GroceryItem>,
+        private val newList: List<GroceryItem>
     ) : DiffUtil.Callback() {
         override fun getOldListSize() = oldList.size
         override fun getNewListSize() = newList.size
